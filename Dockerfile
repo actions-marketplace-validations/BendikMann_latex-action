@@ -1,4 +1,4 @@
-FROM jefftian/texlive-full:latest
+FROM texlive/texlive:latest
 
 COPY \
   LICENSE \
