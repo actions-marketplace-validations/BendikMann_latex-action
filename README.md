@@ -1,6 +1,6 @@
 # latex-action
 
-[![GitHub Actions Status](https://github.com/jeff-tian/latex-action/workflows/Test%20Github%20Action/badge.svg)](https://github.com/jeff-tian/latex-action/actions)
+[![Test Github Action](https://github.com/BendikMann/latex-action/actions/workflows/test.yml/badge.svg)](https://github.com/BendikMann/latex-action/actions/workflows/test.yml)
 
 GitHub Action to compile LaTeX documents.
 
@@ -12,7 +12,7 @@ It runs in [a docker image](https://hub.docker.com/r/texlive/texlive) with a ful
 
     The root LaTeX file to be compiled. This input is required. You can also pass multiple files as a multi-line string to compile multiple documents. For example:
     ```yaml
-    - uses: xu-cheng/latex-action@v2
+    - uses: BendikMann/latex-action@v0.0.1
       with:
         root_file: |
           file1.tex
@@ -81,14 +81,14 @@ jobs:
 By default, this action uses pdfLaTeX. If you want to use XeLaTeX or LuaLaTeX, you can set the `latexmk_use_xelatex` or `latexmk_use_lualatex` input respectively. For example:
 
 ```yaml
-- uses: xu-cheng/latex-action@v2
+- uses: BendikMann/latex-action@v0.0.1
   with:
     root_file: main.tex
     latexmk_use_xelatex: true
 ```
 
 ```yaml
-- uses: xu-cheng/latex-action@v2
+- uses: BendikMann/latex-action@v0.0.1
   with:
     root_file: main.tex
     latexmk_use_lualatex: true
@@ -101,7 +101,7 @@ Alternatively, you could create a `.latexmkrc` file. Refer to the [`latexmk` doc
 To enable `--shell-escape`, set the `latexmk_shell_escape` input.
 
 ```yaml
-- uses: xu-cheng/latex-action@v2
+- uses: BendikMann/latex-action@v0.0.1
   with:
     root_file: main.tex
     latexmk_shell_escape: true
@@ -114,10 +114,6 @@ The PDF file will be in the same folder as that of the LaTeX source in the CI en
 - You can use [`@actions/upload-artifact`](https://github.com/actions/upload-artifact) to upload PDF file to the workflow tab.
 - You can use [`@actions/upload-release-asset`](https://github.com/actions/upload-release-asset) to upload PDF file to the Github Release.
 - You can use normal shell tools such as `scp`/`git`/`rsync` to upload PDF file anywhere. For example, you can git push to the `gh-pages` branch in your repo, so you can view the document using Github Pages.
-
-### It fails due to `xindy` cannot be found.
-
-This is an upstream issue where `xindy.x86_64-linuxmusl` is currently missing in TeXLive. To work around it, try [this](https://github.com/xu-cheng/latex-action/issues/32#issuecomment-626086551).
 
 ### It fails to build the document, how to solve it?
 

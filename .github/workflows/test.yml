@@ -88,32 +88,6 @@ jobs:
           # Instruct latexmk to enable --shell-escape
           latexmk_shell_escape: true
           latexmk_use_xelatex: true
-      - name: Check pdf files
-        run: |
-          file test/test.pdf | grep -q ' PDF '
-          file test/file1.pdf | grep -q ' PDF '
-          file test/file2.pdf | grep -q ' PDF '
-          file test/math.pdf | grep -q ' PDF '
-          file test/biblatex.pdf | grep -q ' PDF '
-          file test/eps.pdf | grep -q ' PDF '
-          file test/minted.pdf | grep -q ' PDF '
-          file test/graphviz.pdf | grep -q ' PDF '
-          file test/abc.pdf | grep -q ' PDF '
-          file test/fduthesis.pdf | grep -q ' PDF '
-      - name: CNAME
-        run: |
-          rm test/.gitignore
-          cp CNAME test/CNAME
-      - name: Deploy
-        uses: docker://peaceiris/gh-pages:v2.3.1
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./test
-        with:
-          emptyCommits: true
-          keepFiles: true
-          commitMessage: ${{ github.event.head_commit.message }}
       - name: Upload
         uses: actions/upload-artifact@master
         with:
