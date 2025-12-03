@@ -1,4 +1,4 @@
-name: LaTeX Action
+name: LaTeX to PDF
 description: GitHub Action to compile LaTeX documents
 author: Jeff Tian
 inputs:
